@@ -1,0 +1,15 @@
+[package]
+name = "aoc2020"
+version = "0.1.0"
+authors = ["Oleksandr Kolodii <oleksandr.kolodii@booking.com>"]
+edition = "2018"
+
+[lib]
+bench = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rust-crypto = "0.2.36"
+aoc-runner = "0.3.0"
+aoc-runner-derive = "0.3.0"
