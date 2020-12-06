@@ -12,12 +12,7 @@ pub fn input_generator(input: &str) -> Vec<Vec<String>> {
 pub fn solve_part1(input: &[Vec<String>]) -> usize {
     input
         .iter()
-        .map(|g| {
-            g.iter().fold(HashSet::new(), |mut acc, p| {
-                p.chars().for_each(|c| {acc.insert(c);});
-                acc
-            })
-        })
+        .map(|g| g.iter().flat_map(|p| p.chars().collect::<Vec<char>>()).collect::<HashSet<char>>())
         .map(|m| m.len())
         .sum()
 }
