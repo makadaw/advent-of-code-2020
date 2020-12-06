@@ -1,9 +1,6 @@
 #[aoc_generator(day1)]
 pub fn input_generator(input: &str) -> Vec<usize> {
-    input
-        .lines()
-        .flat_map(|s| s.parse::<usize>())
-        .collect()
+    input.lines().flat_map(|s| s.parse::<usize>()).collect()
 }
 
 #[aoc(day1, part1)]
@@ -27,7 +24,7 @@ pub fn solve_part1_sorted(input: &[usize]) -> usize {
     nums.sort();
 
     let mut a = 0;
-    let mut b = nums.len()-1;
+    let mut b = nums.len() - 1;
     while nums[a] + nums[b] != 2020 && a < b {
         if nums[a] + nums[b] > 2020 {
             b -= 1;
@@ -35,7 +32,7 @@ pub fn solve_part1_sorted(input: &[usize]) -> usize {
             a += 1;
         }
     }
-    nums[a]*nums[b]
+    nums[a] * nums[b]
 }
 
 #[aoc(day1, part2)]

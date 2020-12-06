@@ -1,9 +1,6 @@
 #[aoc_generator(day3)]
 pub fn input_generator(input: &str) -> Vec<Vec<char>> {
-    input
-        .lines()
-        .map(|s| s.chars().collect() )
-        .collect()
+    input.lines().map(|s| s.chars().collect()).collect()
 }
 
 #[aoc(day3, part1)]
@@ -34,7 +31,7 @@ fn trees_on_the_slope(slope: &[Vec<char>], right: usize, down: usize) -> usize {
 
 #[aoc(day3, part2)]
 pub fn solve2(input: &[Vec<char>]) -> usize {
-    vec![(1, 1), (3, 1), (5,1), (7,1), (1,2)]
+    vec![(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
         .iter()
         .map(|(right, down)| trees_on_the_slope(input, *right, *down))
         .product()
