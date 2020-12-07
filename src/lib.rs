@@ -1,4 +1,5 @@
-#[macro_use] extern crate scan_fmt;
+#[macro_use]
+extern crate scan_fmt;
 extern crate aoc_runner;
 
 #[macro_use]
