@@ -55,18 +55,18 @@ fn evaluate(input: &[Instruction]) -> Option<isize> {
 #[aoc(day8, part2)]
 pub fn solve_part2(input: &[Instruction]) -> isize {
     let mut copy = input.to_vec();
-    for (i, _) in input.iter().enumerate() {
+    (0..input.len()).find_map(|i| {
         if input[i].0 != "acc" {
             let was = copy.remove(i);
-            copy.insert(i, (if was.0 == "nop" { "jmp".to_string() } else { "nop".to_string() }, was.1));
+            copy.insert(i, ((if was.0 == "nop" { "jmp" } else { "nop" }).to_string(), was.1));
             match evaluate(&copy) {
-                Some(a) => return a,
+                Some(a) => return Some(a),
                 None => {
                     copy.remove(i);
                     copy.insert(i, was);
                 }
             }
-        }
-    }
-    0
+        };
+        None
+    }).unwrap_or(0)
 }
