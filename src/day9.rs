@@ -29,7 +29,8 @@ pub fn solve_part1(input: &[usize]) -> usize {
                 preamble.push(**n);
             }
             !valid
-        }).unwrap()
+        })
+        .unwrap()
 }
 
 #[aoc(day9, part2)]
@@ -43,12 +44,12 @@ pub fn solve_part2(input: &[usize]) -> usize {
             Ordering::Less => {
                 j += 1;
                 sum += input[j];
-            },
+            }
             Ordering::Greater => {
                 sum -= input[i];
                 i += 1;
-            },
-            Ordering::Equal => break
+            }
+            Ordering::Equal => break,
         }
     }
     let values = input[i..=j]
@@ -56,4 +57,3 @@ pub fn solve_part2(input: &[usize]) -> usize {
         .fold((input[i], 0), |acc, n| (acc.0.min(*n), acc.1.max(*n)));
     values.0 + values.1
 }
-

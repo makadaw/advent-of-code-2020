@@ -24,7 +24,7 @@ pub fn solve_part1(input: &[Instruction]) -> isize {
             _ => {}
         };
         idx += 1
-    };
+    }
     acc
 }
 
@@ -35,19 +35,17 @@ fn evaluate(input: &[Instruction]) -> Option<isize> {
     while last.get(&idx) == None {
         last.insert(idx);
         match input.get(idx) {
-            Some((instruction, i)) => {
-                match instruction.as_str() {
-                    "acc" => acc += i,
-                    "jmp" => idx = (idx as isize + i - 1) as usize,
-                    "nop" => {}, 
-                    _ => panic!("Not supported op!")
-                }
+            Some((instruction, i)) => match instruction.as_str() {
+                "acc" => acc += i,
+                "jmp" => idx = (idx as isize + i - 1) as usize,
+                "nop" => {}
+                _ => panic!("Not supported op!"),
             },
             // We are out of instruction
             None => return Some(acc),
         }
         idx += 1
-    };
+    }
     // If we are here program was in the loop
     None
 }
@@ -55,18 +53,26 @@ fn evaluate(input: &[Instruction]) -> Option<isize> {
 #[aoc(day8, part2)]
 pub fn solve_part2(input: &[Instruction]) -> isize {
     let mut copy = input.to_vec();
-    (0..input.len()).find_map(|i| {
-        if input[i].0 != "acc" {
-            let was = copy.remove(i);
-            copy.insert(i, ((if was.0 == "nop" { "jmp" } else { "nop" }).to_string(), was.1));
-            match evaluate(&copy) {
-                Some(a) => return Some(a),
-                None => {
-                    copy.remove(i);
-                    copy.insert(i, was);
+    (0..input.len())
+        .find_map(|i| {
+            if input[i].0 != "acc" {
+                let was = copy.remove(i);
+                copy.insert(
+                    i,
+                    (
+                        (if was.0 == "nop" { "jmp" } else { "nop" }).to_string(),
+                        was.1,
+                    ),
+                );
+                match evaluate(&copy) {
+                    Some(a) => return Some(a),
+                    None => {
+                        copy.remove(i);
+                        copy.insert(i, was);
+                    }
                 }
-            }
-        };
-        None
-    }).unwrap_or(0)
+            };
+            None
+        })
+        .unwrap_or(0)
 }
