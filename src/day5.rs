@@ -55,6 +55,16 @@ pub fn solve1(input: &str) -> usize {
         .unwrap_or(0)
 }
 
+#[aoc(day5, part1, binary)]
+pub fn solve1_2(input: &str) -> usize {
+    input
+        .lines()
+        .map(|s| s.replace('F', "0").replace('B', "1").replace('L', "0").replace('R', "1"))
+        .flat_map(|s| usize::from_str_radix(s.as_str(), 2))
+        .max()
+        .unwrap_or(0)
+}
+
 #[aoc(day5, part2)]
 pub fn solve2(input: &str) -> usize {
     let mut tickets = input.lines().map(Ticket::from).collect::<Vec<Ticket>>();
