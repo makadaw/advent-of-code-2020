@@ -11,6 +11,7 @@ bench = false
 
 [dependencies]
 scan_fmt = "0.2"
+itertools = "0.9.0"
 rust-crypto = "0.2.36"
 aoc-runner = "0.3.0"
 aoc-runner-derive = "0.3.0"
