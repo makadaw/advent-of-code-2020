@@ -7,4 +7,3 @@ pub fn input_generator(input: &str) -> String {
 pub fn solve_part1(_input: &str) -> usize {
     0
 }
-
