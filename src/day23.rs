@@ -32,7 +32,7 @@ impl Deck {
 
     pub fn make(seed: &[usize], max: usize) -> Self {
         let i: Vec<usize> = (1..=max)
-            .map(|i| if i < seed.len()+1 { seed[i-1] } else { i })
+            .map(|i| if i < seed.len() + 1 { seed[i - 1] } else { i })
             .collect();
         let mut next_map: HashMap<usize, usize> = i.iter().copied().tuple_windows().collect();
         next_map.insert(i[i.len() - 1], i[0]);
